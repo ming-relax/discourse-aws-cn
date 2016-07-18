@@ -23,18 +23,17 @@ after_initialize do
     end
   end
 
-  # module FileStore
-  #   class S3Store
-  #     def absolute_base_url
-  #       # cf. http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
-  #       @absolute_base_url ||= if SiteSetting.s3_region == "us-east-1"
-  #         "//#{s3_bucket}.s3.amazonaws.com"
-  #       elsif SiteSetting.s3_region == 'cn-north-1'
-  #         "//#{s3_bucket}.s3.cn-north-1.amazonaws.com.cn"
-  #       else
-  #         "//#{s3_bucket}.s3-#{SiteSetting.s3_region}.amazonaws.com"
-  #       end
-  #     end
-  #   end
-  # end
+  require_relative '../../lib/file_store/s3_store'
+  class ::FileStore::S3Store
+    def absolute_base_url
+      # cf. http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+      @absolute_base_url ||= if ::SiteSetting.s3_region == "us-east-1"
+        "//#{s3_bucket}.s3.amazonaws.com"
+      elsif ::SiteSetting.s3_region == 'cn-north-1'
+        "//#{s3_bucket}.s3.cn-north-1.amazonaws.com.cn"
+      else
+        "//#{s3_bucket}.s3-#{::SiteSetting.s3_region}.amazonaws.com"
+      end
+    end
+  end
 end
