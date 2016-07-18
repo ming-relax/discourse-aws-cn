@@ -1,6 +1,6 @@
 # name: discourse-aws-cn
 # about: Support aws cn in discourse
-# version: 0.1
+# version: 0.2
 # authors: Ming
 # url: https://github.com/ming-relax/discourse-aws-cn
 
